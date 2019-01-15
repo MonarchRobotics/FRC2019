@@ -18,6 +18,42 @@ public class RobotMap {
   // following variables to use with your drivetrain subsystem.
   // public static int leftMotor = 1;
   // public static int rightMotor = 2;
+  
+  //DONT SET THESE TO 1
+  private static final double translationalDeadZone = 0.1;
+  private static final double rotationalDeadZone = 0.1;
+
+  private static int frontLeft = 1;
+  private static int frontRight = 2;
+  private static int backLeft = 3;
+  private static int backRight = 4;
+
+  public static int getBackLeft() {
+      return backLeft;
+  }
+  public static int getBackRight() {
+      return backRight;
+  }
+  public static int getFrontLeft() {
+      return frontLeft;
+  }
+  public static int getFrontRight() {
+      return frontRight;
+  }
+
+  /**
+   * @return the rotationaldeadzone
+   */
+  public static double getRotationaldeadzone() {
+    return rotationalDeadZone;
+  }
+
+  /**
+   * @return the translationaldeadzone
+   */
+  public static double getTranslationaldeadzone() {
+    return translationalDeadZone;
+  }
 
   // If you are using multiple modules, make sure to define both the port
   // number and the module. For example you with a rangefinder:

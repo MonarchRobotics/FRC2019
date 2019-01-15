@@ -8,6 +8,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
+//Not sure if we're going to need a joystick yet, but its here anyways. Still need to write code for it though.
 import edu.wpi.first.wpilibj.Joystick;
 
 /**
@@ -43,4 +44,21 @@ public class OI {
   // Start the command when the button is released and let it run the command
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand());
+
+  public static XboxController controller;
+
+  public OI(){
+    controller = new XboxController(0);
+  }
+
+  public static double deadZone (double val, double deadZone){
+    if (Math.abs(val) > deadZone){
+        if (val > 0){
+            return (val - deadZone) / (1 - deadZone);
+        } else {
+            return -(-val - deadZone) / (1 - deadZone);
+        }
+    }
+    return 0;
+  }
 }
