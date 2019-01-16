@@ -8,14 +8,30 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.Spark;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
  */
 public class LiftSystem extends Subsystem {
+  private Spark spark1, spark2, spark3;
 
-  public LiftSystem(){
-    
+  public LiftSystem(int port1, int port2, int port3){
+    spark1 = new Spark(port1);
+    spark2 = new Spark(port2);
+    spark3 = new Spark(port3);
+  }
+
+  public Spark getSpark1() {
+    return spark1;
+  }
+
+  public Spark getSpark2() {
+    return spark2;
+  }
+
+  public Spark getSpark3() {
+    return spark3;
   }
 
   @Override

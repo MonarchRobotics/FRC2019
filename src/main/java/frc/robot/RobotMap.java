@@ -23,10 +23,14 @@ public class RobotMap {
   private static final double translationalDeadZone = 0.1;
   private static final double rotationalDeadZone = 0.1;
 
-  private static int frontLeft = 1;
-  private static int frontRight = 2;
-  private static int backLeft = 3;
-  private static int backRight = 4;
+  private final static int frontLeft = 1;
+  private final static int frontRight = 2;
+  private final static int backLeft = 3;
+  private final static int backRight = 4;
+
+  private final static int spark1 = 5;
+  private final static int spark2 = 6;
+  private final static int spark3 = 7;
 
   public static int getBackLeft() {
       return backLeft;
@@ -41,18 +45,22 @@ public class RobotMap {
       return frontRight;
   }
 
-  /**
-   * @return the rotationaldeadzone
-   */
   public static double getRotationaldeadzone() {
     return rotationalDeadZone;
   }
 
-  /**
-   * @return the translationaldeadzone
-   */
   public static double getTranslationaldeadzone() {
     return translationalDeadZone;
+  }
+
+  public static int getSpark1() {
+      return spark1;
+  }
+  public static int getSpark2() {
+      return spark2;
+  }
+  public static int getSpark3() {
+      return spark3;
   }
 
   // If you are using multiple modules, make sure to define both the port

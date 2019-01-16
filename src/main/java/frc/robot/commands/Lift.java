@@ -16,7 +16,7 @@ import frc.robot.OI;
  */
 public class Lift extends Command {
   public Lift() {
-    requires(Robot.m_subsystem);
+    // requires(Robot.m_subsystem);
     requires(Robot.lift);
   }
 
@@ -29,7 +29,13 @@ public class Lift extends Command {
   @Override
   protected void execute() {
     if(OI.controller.getAButton()){
-      //Code here to lift the thing.
+      Robot.lift.getSpark1().set(0.5);
+    }
+    else if(OI.controller.getBButton()){
+      Robot.lift.getSpark1().set(-0.5);
+    }
+    else{
+      Robot.lift.getSpark1().set(0);
     }
   }
 
