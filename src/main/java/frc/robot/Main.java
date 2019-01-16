@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.RobotBase;
  * change the parameter class to the startRobot call.
  */
 public final class Main {
-  private Main() {
+  private Main(){
   }
 
   /**
@@ -25,5 +25,6 @@ public final class Main {
    */
   public static void main(String... args) {
     RobotBase.startRobot(Robot::new);
+    // System.out.println("This is a test");
   }
 }

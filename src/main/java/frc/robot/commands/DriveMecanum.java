@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 /**
  * An example command.  You can replace me with your own command.
@@ -19,6 +20,7 @@ public class DriveMecanum extends Command {
   public DriveMecanum() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.m_subsystem);
+    requires(Robot.drivetrain);
   }
 
   // // Called just before this Command runs the first time
@@ -30,7 +32,11 @@ public class DriveMecanum extends Command {
   @Override
   protected void execute() {
     double x, y, twist;
-    x = OI.deadZone(OI.controller.getX(GenericHID.Hand.kLeft));
+    x = OI.deadZone(OI.controller.getX(GenericHID.Hand.kLeft), RobotMap.getTranslationaldeadzone());
+    y = OI.deadZone(OI.controller.getY(GenericHID.Hand.kLeft), RobotMap.getTranslationaldeadzone());
+    twist = OI.deadZone(OI.controller.getX(GenericHID.Hand.kRight), RobotMap.getRotationaldeadzone());
+
+    Robot.drivetrain.getDrivetrain().driveCartesian(x, y, twist);
   }
 
   // Make this return true when this Command no longer needs to run execute()
