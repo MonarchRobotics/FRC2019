@@ -18,8 +18,11 @@ public class LiftSystem extends Subsystem {
 
   public LiftSystem(int port1, int port2, int port3){
     spark1 = new Spark(port1);
+    spark1.enableDeadbandElimination(true);
     spark2 = new Spark(port2);
+    spark2.enableDeadbandElimination(true);
     spark3 = new Spark(port3);
+    spark3.enableDeadbandElimination(true);
   }
 
   public Spark getSpark1() {
