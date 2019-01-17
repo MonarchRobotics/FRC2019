@@ -8,8 +8,6 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
-//Not sure if we're going to need a joystick yet, but its here anyways. Still need to write code for it though.
-import edu.wpi.first.wpilibj.Joystick;
 
 /**
  * This class is the glue that binds the controls on the physical operator
