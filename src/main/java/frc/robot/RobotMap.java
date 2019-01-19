@@ -32,6 +32,9 @@ public class RobotMap {
   private final static int spark2 = 6;
   private final static int spark3 = 7;
 
+  private static final int openChannel = 1;
+  private static final int releaseChannel = 2;
+
   public static int getBackLeft() {
       return backLeft;
   }
@@ -43,6 +46,14 @@ public class RobotMap {
   }
   public static int getFrontRight() {
       return frontRight;
+  }
+
+  public static int getOpenChannel() {
+      return openChannel;
+  }
+
+  public static int getReleaseChannel() {
+      return releaseChannel;
   }
 
   public static double getRotationaldeadzone() {
