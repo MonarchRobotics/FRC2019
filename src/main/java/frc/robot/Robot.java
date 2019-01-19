@@ -28,6 +28,7 @@ public class Robot extends TimedRobot {
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static OI m_oi;
   public static LiftSystem lift = new LiftSystem(RobotMap.getSpark1(), RobotMap.getSpark2(), RobotMap.getSpark3());
+  public static Ducc duck = new Ducc(RobotMap.getOpenChannel(), RobotMap.getReleaseChannel());
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();

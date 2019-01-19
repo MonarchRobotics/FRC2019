@@ -7,12 +7,16 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.OI;
+import frc.robot.Robot;
 
 public class Grabber extends Command {
   public Grabber() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Robot.duck);
   }
 
   // Called just before this Command runs the first time
@@ -23,6 +27,14 @@ public class Grabber extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    if (OI.controller.getAButtonPressed()) {
+      if (Robot.duck.getValue()!=Value.kForward) {
+        Robot.duck.openDucc();
+      }
+      else {
+        Robot.duck.closeDucc();
+      }
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
