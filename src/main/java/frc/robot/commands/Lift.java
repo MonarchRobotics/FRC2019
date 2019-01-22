@@ -28,10 +28,10 @@ public class Lift extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(OI.controller.getAButton()){
+    if(OI.controller.getXButtonPressed()){
       Robot.lift.getSpark1().set(0.5);
     }
-    else if(OI.controller.getBButton()){
+    else if(OI.controller.getYButtonPressed()){
       Robot.lift.getSpark1().set(-0.5);
     }
     else{
