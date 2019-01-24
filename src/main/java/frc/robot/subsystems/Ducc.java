@@ -9,7 +9,6 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.Grabber;
 
@@ -20,7 +19,7 @@ public class Ducc extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  DoubleSolenoid grabberSolenoid;
+  private DoubleSolenoid grabberSolenoid;
 
   public Ducc(int openChannel, int closeChannel) {
     grabberSolenoid = new DoubleSolenoid(openChannel, closeChannel);
@@ -36,7 +35,7 @@ public class Ducc extends Subsystem {
 
   public void openDucc() {
     grabberSolenoid.set(DoubleSolenoid.Value.kForward);
-    SmartDashboard.putBoolean("Lifted", false);
+    SmartDashboard.putBoolean("Open", false);
   }
   public void closeDucc() {
     grabberSolenoid.set(DoubleSolenoid.Value.kReverse);

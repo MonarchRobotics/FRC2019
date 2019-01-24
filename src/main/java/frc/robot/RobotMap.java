@@ -32,6 +32,13 @@ public class RobotMap {
   private final static int spark2 = 6;
   private final static int spark3 = 7;
 
+  private static final int raiseFrontLeft = 8;
+  private static final int raiseFrontRight = 9;
+  private static final int raiseBackLeft = 10;
+  private static final int raiseBackRight = 11;
+  private static final int leftWheel = 12;
+  private static final int rightWheel = 13;
+
   private static final int openChannel = 1;
   private static final int releaseChannel = 2;
 
@@ -46,6 +53,25 @@ public class RobotMap {
   }
   public static int getFrontRight() {
       return frontRight;
+  }
+
+  public static int getRaiseFrontLeft() {
+      return raiseFrontLeft;
+  }
+  public static int getRaiseFrontRight() {
+      return raiseFrontRight;
+  }
+  public static int getRaiseBackLeft() {
+      return raiseBackLeft;
+  }
+  public static int getRaiseBackRight() {
+      return raiseBackRight;
+  }
+  public static int getLeftWheel() {
+      return leftWheel;
+  }
+  public static int getRightWheel() {
+      return rightWheel;
   }
 
   public static int getOpenChannel() {
