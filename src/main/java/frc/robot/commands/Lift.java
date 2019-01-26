@@ -29,13 +29,13 @@ public class Lift extends Command {
   @Override
   protected void execute() {
     if(OI.controller.getXButtonPressed()){
-      Robot.lift.getSpark1().set(0.5);
+      Robot.lift.getSpark().set(0.5);
     }
     else if(OI.controller.getYButtonPressed()){
-      Robot.lift.getSpark1().set(-0.5);
+      Robot.lift.getSpark().set(-0.5);
     }
     else{
-      Robot.lift.getSpark1().set(0);
+      Robot.lift.getSpark().set(0);
     }
   }
 

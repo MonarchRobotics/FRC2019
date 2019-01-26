@@ -27,7 +27,7 @@ public class Robot extends TimedRobot {
   public static Drivetrain drivetrain = new Drivetrain(RobotMap.getFrontLeft(), RobotMap.getFrontRight(), RobotMap.getBackLeft(), RobotMap.getBackRight());
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static OI m_oi;
-  public static LiftSystem lift = new LiftSystem(RobotMap.getSpark1(), RobotMap.getSpark2(), RobotMap.getSpark3());
+  public static LiftSystem lift = new LiftSystem(RobotMap.getSpark());
   public static Ducc duck = new Ducc(RobotMap.getOpenChannel(), RobotMap.getReleaseChannel());
   public static LowRider climber = new LowRider(RobotMap.getRaiseFrontLeft(), RobotMap.getRaiseFrontRight(), RobotMap.getRaiseBackLeft(), RobotMap.getRaiseBackRight(), RobotMap.getLeftWheel(), RobotMap.getRightWheel());
 

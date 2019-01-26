@@ -28,9 +28,7 @@ public class RobotMap {
   private final static int backLeft = 3;
   private final static int backRight = 4;
 
-  private final static int spark1 = 5;
-  private final static int spark2 = 6;
-  private final static int spark3 = 7;
+  private final static int spark = 5;
 
   private static final int raiseFrontLeft = 8;
   private static final int raiseFrontRight = 9;
@@ -90,14 +88,8 @@ public class RobotMap {
     return translationalDeadZone;
   }
 
-  public static int getSpark1() {
-      return spark1;
-  }
-  public static int getSpark2() {
-      return spark2;
-  }
-  public static int getSpark3() {
-      return spark3;
+  public static int getSpark() {
+      return spark;
   }
 
   // If you are using multiple modules, make sure to define both the port
