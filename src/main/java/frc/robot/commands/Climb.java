@@ -27,8 +27,28 @@ public class Climb extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (OI.controller.getBumper(Hand.kRight)) {
+    boolean Front, Back, LowRiderCompletion;
+    LowRiderCompletion = false;
+    Front = false;
+    Back = false;
 
+    if (OI.controller.getBumper(Hand.kRight)) {
+      if (!LowRiderCompletion)
+      {
+        if (!Front && !Back)
+        {
+          Robot.climber.LowRiderUp();
+        }
+        else if (Front)
+        {
+          Robot.climber.FrontUp();
+        }
+        else if (Back)
+        {
+          Robot.climber.BackUp();
+          LowRiderCompletion = true;
+        }
+      }
     }
   }
 
