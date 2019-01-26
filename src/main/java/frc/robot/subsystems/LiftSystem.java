@@ -8,33 +8,22 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.Spark;
+
+import com.revrobotics.CANSparkMax;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
  */
 public class LiftSystem extends Subsystem {
-  private Spark spark1, spark2, spark3;
+  private CANSparkMax spark;
 
-  public LiftSystem(int port1, int port2, int port3){
-    spark1 = new Spark(port1);
-    spark1.enableDeadbandElimination(true);
-    spark2 = new Spark(port2);
-    spark2.enableDeadbandElimination(true);
-    spark3 = new Spark(port3);
-    spark3.enableDeadbandElimination(true);
+  public LiftSystem(int port1){
+    spark = new CANSparkMax(port1, null);
+    
   }
 
-  public Spark getSpark1() {
-    return spark1;
-  }
-
-  public Spark getSpark2() {
-    return spark2;
-  }
-
-  public Spark getSpark3() {
-    return spark3;
+  public CANSparkMax getSpark() {
+    return spark;
   }
 
   @Override
