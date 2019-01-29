@@ -18,43 +18,39 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 public class LowRider extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public WPI_TalonSRX RaiseFrontLeft, RaiseFrontRight, RaiseBackLeft, RaiseBackRight, leftWheel, rightWheel;
+  public WPI_TalonSRX lowerWheel, RaiseFront, RaiseBack;
   
-  public LowRider(int frontLeft, int frontRight, int backLeft, int backRight, int leftWheel, int rightWheel) {
-    this.RaiseFrontLeft = new WPI_TalonSRX(frontLeft);
-    this.RaiseFrontRight = new WPI_TalonSRX(frontRight);
-    this.RaiseBackLeft = new WPI_TalonSRX(backLeft);
-    this.RaiseBackRight = new WPI_TalonSRX(backRight);
-    this.leftWheel = new WPI_TalonSRX(leftWheel);
-    this.rightWheel = new WPI_TalonSRX(rightWheel);
+  public LowRider(int lowerWheel, int RaiseFront, int RaiseBack) {
+    this.lowerWheel = new WPI_TalonSRX(lowerWheel);
+    this.RaiseFront = new WPI_TalonSRX(RaiseFront);
+    this.RaiseBack = new WPI_TalonSRX(RaiseBack);
 
-    this.RaiseFrontLeft.setNeutralMode(NeutralMode.Brake);
-    this.RaiseFrontRight.setNeutralMode(NeutralMode.Brake);
-    this.RaiseBackLeft.setNeutralMode(NeutralMode.Brake);
-    this.RaiseBackRight.setNeutralMode(NeutralMode.Brake);
+    this.RaiseFront.setNeutralMode(NeutralMode.Brake);
+    this.RaiseBack.setNeutralMode(NeutralMode.Brake);
+
+
   }
 
-
-  // Extends all legs of the 'LowRider' (Initial function for the LowRider sequence)
-  public void LowRiderUp(){
-    RaiseFrontLeft.set(0.5);
-    RaiseFrontRight.set(0.5);
-    RaiseBackLeft.set(0.5);
-    RaiseBackRight.set(0.5);
+  /**
+   * @return the lowerWheel
+   */
+  public WPI_TalonSRX getLowerWheel() {
+    return lowerWheel;
   }
 
-  // Retracts front wheels
-  public void FrontUp(){
-    RaiseFrontLeft.set(-0.5);
-    RaiseFrontRight.set(-0.5);
+  /**
+   * @return the raiseBack
+   */
+  public WPI_TalonSRX getRaiseBack() {
+    return RaiseBack;
   }
 
-  // Retracts back wheels
-  public void BackUp(){
-    RaiseBackLeft.set(-0.5);
-    RaiseBackRight.set(-0.5);
+  /**
+   * @return the raiseFront
+   */
+  public WPI_TalonSRX getRaiseFront() {
+    return RaiseFront;
   }
-
 
   @Override
   public void initDefaultCommand() {
