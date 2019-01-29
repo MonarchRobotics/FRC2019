@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
@@ -17,8 +18,9 @@ import com.revrobotics.CANSparkMax;
 public class LiftSystem extends Subsystem {
   private CANSparkMax spark;
 
-  public LiftSystem(int port1){
-    spark = new CANSparkMax(port1, null);
+  public LiftSystem(int port){
+    
+    spark = new CANSparkMax(port, MotorType.kBrushless);
     
   }
 
