@@ -51,7 +51,7 @@ public class RobotMap {
   }
 
 
-  public static int getlowerWheel() {
+  public static int getLowerWheel() {
       return lowerWheel;
   }
   public static int getRaiseFront() {
