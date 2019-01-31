@@ -38,8 +38,8 @@ public class Climb extends Command {
       Robot.climber.getRaiseBack().set(0);
     }
     if (OI.controller.getBumper(Hand.kLeft)) {
-      Robot.climber.getRaiseFront().set(0.5);
-      Robot.climber.getRaiseBack().set(0.5);
+      Robot.climber.getRaiseFront().set(-0.5);
+      Robot.climber.getRaiseBack().set(-0.5);
     }
     else
     {
