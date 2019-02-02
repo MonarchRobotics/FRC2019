@@ -30,9 +30,9 @@ public class RobotMap {
 
   private final static int spark = 12;
 
-  private static final int lowerWheel = 1;
-  private static final int RaiseFront = 2;
-  private static final int RaiseBack = 3;
+  private static final int lowerWheel = 5;
+  private static final int RaiseFront = 6;
+  private static final int RaiseBack = 7;
 
   private static final int openChannel = 1;
   private static final int releaseChannel = 2;

@@ -33,6 +33,11 @@ public class Drivetrain extends Subsystem {
         this.backLeft.setNeutralMode(NeutralMode.Brake);
         this.backRight.setNeutralMode(NeutralMode.Brake);
 
+        this.frontLeft.setInverted(true);
+        this.frontRight.setInverted(true);
+        this.backLeft.setInverted(true);
+        this.backRight.setInverted(true);
+
         drive = new MecanumDrive(this.frontLeft, this.backLeft, this.frontRight, this.backRight);
     }
   // Put methods for controlling this subsystem
