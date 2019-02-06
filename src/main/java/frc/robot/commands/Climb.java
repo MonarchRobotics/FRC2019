@@ -16,7 +16,7 @@ public class Climb extends Command {
   public Climb() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.climber);
+    // requires(Robot.climber);
   }
 
   // Called just before this Command runs the first time
@@ -28,24 +28,24 @@ public class Climb extends Command {
   @Override
   protected void execute() {
 
-    if (OI.controller.getBumper(Hand.kRight)) {
-      Robot.climber.getRaiseFront().set(0.5);
-      Robot.climber.getRaiseBack().set(0.5);
-    }
-    else
-    {
-      Robot.climber.getRaiseFront().set(0);
-      Robot.climber.getRaiseBack().set(0);
-    }
-    if (OI.controller.getBumper(Hand.kLeft)) {
-      Robot.climber.getRaiseFront().set(0.5);
-      Robot.climber.getRaiseBack().set(0.5);
-    }
-    else
-    {
-      Robot.climber.getRaiseFront().set(0);
-      Robot.climber.getRaiseBack().set(0);
-    }
+    // if (OI.controller.getBumper(Hand.kRight)) {
+    //   Robot.climber.getRaiseFront().set(0.5);
+    //   Robot.climber.getRaiseBack().set(0.5);
+    // }
+    // else
+    // {
+    //   Robot.climber.getRaiseFront().set(0);
+    //   Robot.climber.getRaiseBack().set(0);
+    // }
+    // if (OI.controller.getBumper(Hand.kLeft)) {
+    //   Robot.climber.getRaiseFront().set(0.5);
+    //   Robot.climber.getRaiseBack().set(0.5);
+    // }
+    // else
+    // {
+    //   Robot.climber.getRaiseFront().set(0);
+    //   Robot.climber.getRaiseBack().set(0);
+    // }
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -16,7 +16,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
  * An example subsystem.  You can replace me with your own Subsystem.
  */
 public class LiftSystem extends Subsystem {
-  private CANSparkMax spark;
+  public CANSparkMax spark;
 
   public LiftSystem(int port){
     
