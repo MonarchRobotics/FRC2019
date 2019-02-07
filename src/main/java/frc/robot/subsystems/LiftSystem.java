@@ -11,6 +11,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.CANSparkMax.IdleMode;
+import com.revrobotics.CANError;
+
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
@@ -21,7 +24,7 @@ public class LiftSystem extends Subsystem {
   public LiftSystem(int port){
     
     spark = new CANSparkMax(port, MotorType.kBrushless);
-    
+    spark.clearFaults();
   }
 
   public CANSparkMax getSpark() {

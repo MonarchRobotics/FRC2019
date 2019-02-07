@@ -18,10 +18,11 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 public class LowRider extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public WPI_TalonSRX lowerWheel, RaiseFront, RaiseBack;
+  public WPI_TalonSRX LowerWheelRight, LowerWheelLeft, RaiseFront, RaiseBack;
   
-  public LowRider(int lowerWheel, int RaiseFront, int RaiseBack) {
-    this.lowerWheel = new WPI_TalonSRX(lowerWheel);
+  public LowRider(int LowerWheelRight, int LowerWheelLeft, int RaiseFront, int RaiseBack) {
+    this.LowerWheelRight = new WPI_TalonSRX(LowerWheelRight);
+    this.LowerWheelLeft = new WPI_TalonSRX(LowerWheelLeft);
     this.RaiseFront = new WPI_TalonSRX(RaiseFront);
     this.RaiseBack = new WPI_TalonSRX(RaiseBack);
 
@@ -34,8 +35,15 @@ public class LowRider extends Subsystem {
   /**
    * @return the lowerWheel
    */
-  public WPI_TalonSRX getLowerWheel() {
-    return lowerWheel;
+  public WPI_TalonSRX getLowerWheelLeft() {
+    return LowerWheelLeft;
+  }
+
+  /**
+   * @return the lowerWheel
+   */
+  public WPI_TalonSRX getLowerWheelRight() {
+    return LowerWheelRight;
   }
 
   /**

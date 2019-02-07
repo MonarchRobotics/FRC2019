@@ -29,7 +29,7 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
   public static LiftSystem lift = new LiftSystem(RobotMap.getSpark());
   public static Ducc duck = new Ducc(RobotMap.getOpenChannel(), RobotMap.getReleaseChannel());
-  public static LowRider climber = new LowRider(RobotMap.getRaiseFront(), RobotMap.getRaiseBack(), RobotMap.getLowerWheel());
+  public static LowRider climber = new LowRider(RobotMap.getRaiseFront(), RobotMap.getRaiseBack(), RobotMap.getLowerWheelRight(), RobotMap.getLowerWheelLeft());
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();

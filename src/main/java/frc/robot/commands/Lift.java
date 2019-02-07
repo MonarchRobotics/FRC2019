@@ -10,6 +10,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.OI;
+import edu.wpi.first.wpilibj.smartdashboard.*;
 
 /**
  * An example command.  You can replace me with your own command.
@@ -30,6 +31,7 @@ public class Lift extends Command {
   protected void execute() {
     if(OI.controller.getXButtonPressed()){
       Robot.lift.getSpark().set(0.5);
+      SmartDashboard.putString("X Pressed", "You pressed x");
     }
     else if(OI.controller.getYButtonPressed()){
       Robot.lift.getSpark().set(-0.5);

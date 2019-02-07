@@ -7,6 +7,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
@@ -27,25 +28,40 @@ public class Climb extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    // B raises the whole thing
+    if (OI.controller.getBButton())
+    {
+      Robot.climber.getRaiseFront().set(0.5);
+      Robot.climber.getRaiseBack().set(0.5);
+    }
+    else
+    {
+      Robot.climber.getRaiseFront().set(0);
+      Robot.climber.getRaiseBack().set(0);
+    }
 
-    // if (OI.controller.getBumper(Hand.kRight)) {
-    //   Robot.climber.getRaiseFront().set(0.5);
-    //   Robot.climber.getRaiseBack().set(0.5);
-    // }
-    // else
-    // {
-    //   Robot.climber.getRaiseFront().set(0);
-    //   Robot.climber.getRaiseBack().set(0);
-    // }
-    // if (OI.controller.getBumper(Hand.kLeft)) {
-    //   Robot.climber.getRaiseFront().set(0.5);
-    //   Robot.climber.getRaiseBack().set(0.5);
-    // }
-    // else
-    // {
-    //   Robot.climber.getRaiseFront().set(0);
-    //   Robot.climber.getRaiseBack().set(0);
-    // }
+    // Lowers the front
+    if (OI.controller.getBumper(Hand.kRight)) {
+      Robot.climber.getRaiseFront().set(-0.5);
+    }
+    else
+    {
+      Robot.climber.getRaiseFront().set(0);
+    }
+
+    // Lowers the back
+    if (OI.controller.getBumper(Hand.kLeft)) {
+      Robot.climber.getRaiseBack().set(-0.5);
+    }
+    else
+    {
+      Robot.climber.getRaiseBack().set(0);
+    }
+
+    // Moves the low rider wheels
+    double WheelSpeed = OI.controller.getTriggerAxis(GenericHID.Hand.kRight);
+    Robot.climber.getLowerWheelRight().set(WheelSpeed);
+    Robot.climber.getLowerWheelLeft().set(WheelSpeed);
   }
 
   // Make this return true when this Command no longer needs to run execute()

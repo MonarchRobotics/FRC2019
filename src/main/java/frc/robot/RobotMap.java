@@ -30,9 +30,10 @@ public class RobotMap {
 
   private final static int spark = 0;
 
-  private static final int lowerWheel = 8;
-  private static final int RaiseFront = 6;
-  private static final int RaiseBack = 7;
+  private static final int LowerWheelLeft = 0;
+  private static final int LowerWheelRight = 0;
+  private static final int RaiseFront = 1;
+  private static final int RaiseBack = 15;
 
   private static final int openChannel = 1;
   private static final int releaseChannel = 2;
@@ -50,8 +51,12 @@ public class RobotMap {
       return frontRight;
   }
 
-  public static int getLowerWheel() {
-      return lowerWheel;
+  
+  public static int getLowerWheelLeft() {
+    return LowerWheelLeft;
+  }
+  public static int getLowerWheelRight() {
+      return LowerWheelRight;
   }
   public static int getRaiseFront() {
       return RaiseFront;
