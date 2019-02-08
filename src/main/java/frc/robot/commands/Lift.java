@@ -18,10 +18,11 @@ import com.revrobotics.CANEncoder;
  */
 public class Lift extends Command {
   boolean lifting;
-  int typeLift;//0 is lowered, 1 is 2nd level, 2 is 3rd level
+  int liftingTo;//0 is lowered, 1 is 2nd level, 2 is 3rd level
   public Lift() {
     // requires(Robot.m_subsystem);
     lifting = false;
+    liftingTo=0;
     requires(Robot.lift);
   }
 
@@ -33,18 +34,45 @@ public class Lift extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    System.out.println(OI.controller.getPOV());
-    if(OI.controller.getXButton()){
-      Robot.lift.getSpark().set(0.5);
+    int pov = OI.controller.getPOV();
+
+    if(!lifting){
+      if(pov==270){
+        Robot.lift.getSpark().set(-0.5);
+        lifting = true;
+        liftingTo = 0;
+      }
+      if(pov==0){
+        Robot.lift.getSpark().set(0.5);
+        lifting = true;
+        liftingTo = 2;
+      }
+      if(pov==90){
+        Robot.lift.getSpark().set(0.5);
+        lifting = true;
+        liftingTo = 1;
+      }
     }
-    else if(OI.controller.getYButton()){
-      Robot.lift.getSpark().set(-0.5);
-      //12.5 rotations
-      //20.0 rotations
+    else if(pov==180){
+      stopMoving();
     }
     else{
-      Robot.lift.getSpark().set(0);
+      if(liftingTo==0 && Robot.lift.getSpark().getEncoder().getPosition()<=0){
+        stopMoving();
+      }
+      else if(liftingTo==1 && Robot.lift.getSpark().getEncoder().getPosition()>=12.5*36){
+        stopMoving();
+      }
+      else if(liftingTo==2 && Robot.lift.getSpark().getEncoder().getPosition()>=20*36){
+        stopMoving();
+      }
+    
     }
+  }
+
+  void stopMoving(){
+    Robot.lift.getSpark().set(0);
+    lifting = false;
   }
 
   // Make this return true when this Command no longer needs to run execute()
