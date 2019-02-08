@@ -18,6 +18,7 @@ import com.revrobotics.CANEncoder;
  */
 public class Lift extends Command {
   boolean lifting;
+  boolean secondDirection;//true is up, false is down.
   int liftingTo;//0 is lowered, 1 is 2nd level, 2 is 3rd level
   public Lift() {
     // requires(Robot.m_subsystem);
@@ -35,20 +36,29 @@ public class Lift extends Command {
   @Override
   protected void execute() {
     int pov = OI.controller.getPOV();
+    double speed = 0.5;
 
     if(!lifting){
-      if(pov==270){
-        Robot.lift.getSpark().set(-0.5);
+      if(pov==270 && Robot.lift.getSpark().getEncoder().getPosition()>0){
+        Robot.lift.getSpark().set(-speed);
         lifting = true;
         liftingTo = 0;
       }
       if(pov==0){
-        Robot.lift.getSpark().set(0.5);
+        if(liftingTo==3){
+          Robot.lift.getSpark().set(-speed);
+          secondDirection = false;
+        }
+        else{
+          Robot.lift.getSpark().set(speed);
+          secondDirection = true;
+        }
+        
         lifting = true;
         liftingTo = 2;
       }
-      if(pov==90){
-        Robot.lift.getSpark().set(0.5);
+      if(pov==90 && Robot.lift.getSpark().getEncoder().getPosition()<20*36){
+        Robot.lift.getSpark().set(speed);
         lifting = true;
         liftingTo = 1;
       }
@@ -60,7 +70,7 @@ public class Lift extends Command {
       if(liftingTo==0 && Robot.lift.getSpark().getEncoder().getPosition()<=0){
         stopMoving();
       }
-      else if(liftingTo==1 && Robot.lift.getSpark().getEncoder().getPosition()>=12.5*36){
+      else if(liftingTo==1 && ((secondDirection && Robot.lift.getSpark().getEncoder().getPosition()>=12.5*36) || (secondDirection && Robot.lift.getSpark().getEncoder().getPosition()<=12.5*36))){
         stopMoving();
       }
       else if(liftingTo==2 && Robot.lift.getSpark().getEncoder().getPosition()>=20*36){
