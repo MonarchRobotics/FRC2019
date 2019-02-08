@@ -10,7 +10,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.OI;
-import edu.wpi.first.wpilibj.smartdashboard.*;
+import com.revrobotics.CANEncoder;
 
 /**
  * An example command.  You can replace me with your own command.
@@ -29,14 +29,12 @@ public class Lift extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    System.out.println("This is a test");
+    System.out.println(Robot.lift.getSpark().getEncoder().getPosition());
     if(OI.controller.getXButton()){
-      Robot.lift.getSpark().set(0.25);
-      // SmartDashboard.putString("X Pressed", "You pressed x");
-      System.out.println("You pressed X BUTTON");
+      Robot.lift.getSpark().set(0.5);
     }
     else if(OI.controller.getYButton()){
-      Robot.lift.getSpark().set(-0.25);
+      Robot.lift.getSpark().set(-0.5);
       //12.5 rotations
       //20.0 rotations
     }
