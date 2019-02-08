@@ -31,10 +31,10 @@ public class Lift extends Command {
   protected void execute() {
     System.out.println(Robot.lift.getSpark().getEncoder().getPosition());
     if(OI.controller.getXButton()){
-      Robot.lift.getSpark().set(0.5);
+      Robot.lift.getSpark().set(0.1);
     }
     else if(OI.controller.getYButton()){
-      Robot.lift.getSpark().set(-0.5);
+      Robot.lift.getSpark().set(-0.1);
       //12.5 rotations
       //20.0 rotations
     }
