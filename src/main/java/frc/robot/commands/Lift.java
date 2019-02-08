@@ -29,12 +29,16 @@ public class Lift extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(OI.controller.getXButtonPressed()){
-      Robot.lift.getSpark().set(0.5);
-      SmartDashboard.putString("X Pressed", "You pressed x");
+    System.out.println("This is a test");
+    if(OI.controller.getXButton()){
+      Robot.lift.getSpark().set(0.25);
+      // SmartDashboard.putString("X Pressed", "You pressed x");
+      System.out.println("You pressed X BUTTON");
     }
-    else if(OI.controller.getYButtonPressed()){
-      Robot.lift.getSpark().set(-0.5);
+    else if(OI.controller.getYButton()){
+      Robot.lift.getSpark().set(-0.25);
+      //12.5 rotations
+      //20.0 rotations
     }
     else{
       Robot.lift.getSpark().set(0);
@@ -47,14 +51,14 @@ public class Lift extends Command {
     return false;
   }
 
-  // Called once after isFinished returns true
-  @Override
-  protected void end() {
-  }
+  // // Called once after isFinished returns true
+  // @Override
+  // protected void end() {
+  // }
 
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
-  @Override
-  protected void interrupted() {
-  }
+  // // Called when another command which requires one or more of the same
+  // // subsystems is scheduled to run
+  // @Override
+  // protected void interrupted() {
+  // }
 }

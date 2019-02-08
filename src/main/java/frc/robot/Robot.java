@@ -27,7 +27,7 @@ public class Robot extends TimedRobot {
   public static Drivetrain drivetrain = new Drivetrain(RobotMap.getFrontLeft(), RobotMap.getFrontRight(), RobotMap.getBackLeft(), RobotMap.getBackRight());
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static OI m_oi;
-  public static LiftSystem lift = new LiftSystem(RobotMap.getSpark());
+  public static LiftSystem lift;
   public static Ducc duck = new Ducc(RobotMap.getOpenChannel(), RobotMap.getReleaseChannel());
   public static LowRider climber = new LowRider(RobotMap.getRaiseFront(), RobotMap.getRaiseBack(), RobotMap.getLowerWheelRight(), RobotMap.getLowerWheelLeft());
 
@@ -40,11 +40,12 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    lift = new LiftSystem(RobotMap.getSpark());
     m_oi = new OI();
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
-    CameraServer.getInstance().startAutomaticCapture();
+    // CameraServer.getInstance().startAutomaticCapture();
   }
 
   /**

@@ -19,7 +19,6 @@ import frc.robot.RobotMap;
 public class DriveMecanum extends Command {
   public DriveMecanum() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.m_subsystem);
     requires(Robot.drivetrain);
   }
 
@@ -31,6 +30,7 @@ public class DriveMecanum extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    System.out.println("Mecanum");
     double x, y, twist;
     x = OI.deadZone(OI.controller.getX(GenericHID.Hand.kLeft), RobotMap.getTranslationaldeadzone());
     y = OI.deadZone(OI.controller.getY(GenericHID.Hand.kLeft), RobotMap.getTranslationaldeadzone());
