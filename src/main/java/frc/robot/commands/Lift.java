@@ -50,7 +50,7 @@ public class Lift extends Command {
         liftingTo = 2;
       }
       if(pov==90 && Robot.lift.getSpark().getEncoder().getPosition()<20*36){
-        if(liftingTo==3){
+        if(liftingTo==2){
           Robot.lift.getSpark().set(-speed);
           secondDirection = false;
         }
