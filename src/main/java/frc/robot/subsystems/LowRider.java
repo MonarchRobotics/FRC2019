@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.Climb;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.wpilibj.DigitalInput;
 
 /**
  * Add your docs here.
@@ -19,8 +20,9 @@ public class LowRider extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   public WPI_TalonSRX LowerWheelRight, LowerWheelLeft, RaiseFront, RaiseBack;
+  private DigitalInput rearSwitch, frontSwitch;
   
-  public LowRider(int LowerWheelRight, int LowerWheelLeft, int RaiseFront, int RaiseBack) {
+  public LowRider(int LowerWheelRight, int LowerWheelLeft, int RaiseFront, int RaiseBack, int rearSwitch, int frontSwitch) {
     this.LowerWheelRight = new WPI_TalonSRX(LowerWheelRight);
     this.LowerWheelLeft = new WPI_TalonSRX(LowerWheelLeft);
     this.RaiseFront = new WPI_TalonSRX(RaiseFront);
@@ -29,7 +31,8 @@ public class LowRider extends Subsystem {
     this.RaiseFront.setNeutralMode(NeutralMode.Brake);
     this.RaiseBack.setNeutralMode(NeutralMode.Brake);
 
-
+    this.rearSwitch = new DigitalInput(rearSwitch);
+    this.frontSwitch = new DigitalInput(frontSwitch);
   }
 
   /**
@@ -64,6 +67,6 @@ public class LowRider extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    // setDefaultCommand(new Climb());
+    setDefaultCommand(new Climb());
   }
 }

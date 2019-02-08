@@ -38,6 +38,9 @@ public class RobotMap {
   private static final int openChannel = 1;
   private static final int releaseChannel = 2;
 
+  private static final int rearLimitSwitch = 1;
+  private static final int frontLimitSwitch = 2;
+
   public static int getBackLeft() {
       return backLeft;
   }
@@ -83,6 +86,13 @@ public class RobotMap {
 
   public static int getSpark() {
       return spark;
+  }
+
+  public static int getRearLimitSwitch() {
+      return rearLimitSwitch;
+  }
+  public static int getFrontLimitSwitch() {
+      return frontLimitSwitch;
   }
 
   // If you are using multiple modules, make sure to define both the port
