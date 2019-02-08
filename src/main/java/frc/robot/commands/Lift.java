@@ -12,12 +12,16 @@ import frc.robot.Robot;
 import frc.robot.OI;
 import com.revrobotics.CANEncoder;
 
+
 /**
  * An example command.  You can replace me with your own command.
  */
 public class Lift extends Command {
+  boolean lifting;
+  int typeLift;//0 is lowered, 1 is 2nd level, 2 is 3rd level
   public Lift() {
     // requires(Robot.m_subsystem);
+    lifting = false;
     requires(Robot.lift);
   }
 
@@ -29,7 +33,7 @@ public class Lift extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    System.out.println(Robot.lift.getSpark().getEncoder().getPosition());
+    System.out.println(OI.controller.getPOV());
     if(OI.controller.getXButton()){
       Robot.lift.getSpark().set(0.5);
     }
