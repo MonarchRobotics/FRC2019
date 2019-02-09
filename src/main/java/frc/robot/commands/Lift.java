@@ -44,12 +44,7 @@ public class Lift extends Command {
         lifting = true;
         liftingTo = 0;
       }
-      if(pov==0 && Robot.lift.getSpark().getEncoder().getPosition()<20*36){   
-        Robot.lift.getSpark().set(speed);     
-        lifting = true;
-        liftingTo = 2;
-      }
-      if(pov==90){
+      else if(pov==90){
         if(liftingTo==2){
           Robot.lift.getSpark().set(-speed);
           secondDirection = false;
@@ -60,6 +55,11 @@ public class Lift extends Command {
         }
         lifting = true;
         liftingTo = 1;
+      }
+      else if(pov==0 && Robot.lift.getSpark().getEncoder().getPosition()<20*36){   
+        Robot.lift.getSpark().set(speed);     
+        lifting = true;
+        liftingTo = 2;
       }
     }
     else if(pov==180){
