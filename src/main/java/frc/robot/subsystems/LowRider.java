@@ -19,12 +19,12 @@ import edu.wpi.first.wpilibj.DigitalInput;
 public class LowRider extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public WPI_TalonSRX LowerWheelRight, LowerWheelLeft, RaiseFront, RaiseBack;
+  public WPI_TalonSRX LowerWheel, RaiseFront, RaiseBack;
   private DigitalInput rearSwitch, frontSwitch;
   
-  public LowRider(int LowerWheelRight, int LowerWheelLeft, int RaiseFront, int RaiseBack, int rearSwitch, int frontSwitch) {
-    this.LowerWheelRight = new WPI_TalonSRX(LowerWheelRight);
-    this.LowerWheelLeft = new WPI_TalonSRX(LowerWheelLeft);
+  public LowRider(int LowerWheelRight,int RaiseFront, int RaiseBack, int rearSwitch, int frontSwitch) {
+    this.LowerWheel = new WPI_TalonSRX(LowerWheelRight);
+
     this.RaiseFront = new WPI_TalonSRX(RaiseFront);
     this.RaiseBack = new WPI_TalonSRX(RaiseBack);
 
@@ -38,15 +38,8 @@ public class LowRider extends Subsystem {
   /**
    * @return the lowerWheel
    */
-  public WPI_TalonSRX getLowerWheelLeft() {
-    return LowerWheelLeft;
-  }
-
-  /**
-   * @return the lowerWheel
-   */
-  public WPI_TalonSRX getLowerWheelRight() {
-    return LowerWheelRight;
+  public WPI_TalonSRX getLowerWheel() {
+    return LowerWheel;
   }
 
   /**
