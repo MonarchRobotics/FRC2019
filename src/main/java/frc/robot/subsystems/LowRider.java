@@ -63,6 +63,13 @@ public class LowRider extends Subsystem {
     return RaiseFront;
   }
 
+  public boolean getRearSwitch() {
+    return rearSwitch.get();
+  }
+  public boolean getFrontSwitch() {
+    return frontSwitch.get();
+  }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

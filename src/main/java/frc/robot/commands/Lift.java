@@ -36,7 +36,7 @@ public class Lift extends Command {
   @Override
   protected void execute() {
     int pov = OI.controller.getPOV();
-    double speed = -1.0;
+    double speed = 0.25;
 
     if(!lifting){
       if(pov==270 && Robot.lift.getSpark().getEncoder().getPosition()>0){
