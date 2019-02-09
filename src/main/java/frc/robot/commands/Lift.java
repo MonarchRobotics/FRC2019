@@ -20,6 +20,8 @@ public class Lift extends Command {
   boolean lifting;
   boolean secondDirection;//true is up, false is down.
   int liftingTo;//0 is lowered, 1 is 2nd level, 2 is 3rd level
+  final int second = 8;
+  final int third = 15;
   public Lift() {
     // requires(Robot.m_subsystem);
     lifting = false;
@@ -56,7 +58,7 @@ public class Lift extends Command {
         lifting = true;
         liftingTo = 1;
       }
-      else if(pov==0 && Robot.lift.getSpark().getEncoder().getPosition()<20*36){   
+      else if(pov==0 && Robot.lift.getSpark().getEncoder().getPosition()<third*36){   
         Robot.lift.getSpark().set(speed);     
         lifting = true;
         liftingTo = 2;
@@ -69,10 +71,10 @@ public class Lift extends Command {
       if(liftingTo==0 && Robot.lift.getSpark().getEncoder().getPosition()<=0){
         stopMoving();
       }
-      else if(liftingTo==1 && ((secondDirection && Robot.lift.getSpark().getEncoder().getPosition()>=12.5*36) || (!secondDirection && Robot.lift.getSpark().getEncoder().getPosition()<=12.5*36))){
+      else if(liftingTo==1 && ((secondDirection && Robot.lift.getSpark().getEncoder().getPosition()>=second*36) || (!secondDirection && Robot.lift.getSpark().getEncoder().getPosition()<=second*36))){
         stopMoving();
       }
-      else if(liftingTo==2 && Robot.lift.getSpark().getEncoder().getPosition()>=20*36){
+      else if(liftingTo==2 && Robot.lift.getSpark().getEncoder().getPosition()>=third*36){
         stopMoving();
       }
     
