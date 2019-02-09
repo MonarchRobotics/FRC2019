@@ -34,27 +34,15 @@ public class Climb extends Command {
       Robot.climber.getRaiseFront().set(0.5);
       Robot.climber.getRaiseBack().set(0.5);
     }
-    else
-    {
-      Robot.climber.getRaiseFront().set(0);
-      Robot.climber.getRaiseBack().set(0);
-    }
-
-    // Lowers the front
-    if (OI.controller.getBumper(Hand.kRight)) {
+    else if (OI.controller.getBumper(Hand.kRight) && !Robot.climber.getFrontSwitch()){
       Robot.climber.getRaiseFront().set(-0.5);
     }
-    else
-    {
-      Robot.climber.getRaiseFront().set(0);
-    }
-
-    // Lowers the back
-    if (OI.controller.getBumper(Hand.kLeft)) {
+    else if (OI.controller.getBumper(Hand.kLeft) && !Robot.climber.getRearSwitch()){
       Robot.climber.getRaiseBack().set(-0.5);
     }
     else
     {
+      Robot.climber.getRaiseFront().set(0);
       Robot.climber.getRaiseBack().set(0);
     }
 
