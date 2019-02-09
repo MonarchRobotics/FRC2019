@@ -29,26 +29,38 @@ public class Climb extends Command {
   @Override
   protected void execute() {
     // B raises the whole thing
-    if (OI.controller.getBButton())
-    {
-      Robot.climber.getRaiseFront().set(0.5);
-      Robot.climber.getRaiseBack().set(0.5);
-    }
-    else if (OI.controller.getBumper(Hand.kRight) && !Robot.climber.getFrontSwitch()){
+    if(OI.controller.getBumper(GenericHID.Hand.kLeft)){
       Robot.climber.getRaiseFront().set(-0.5);
     }
-    else if (OI.controller.getBumper(Hand.kLeft) && !Robot.climber.getRearSwitch()){
+    else{
+      Robot.climber.getRaiseFront().set(OI.controller.getTriggerAxis(GenericHID.Hand.kLeft));
+    }
+    if(OI.controller.getBumper(GenericHID.Hand.kRight)){
       Robot.climber.getRaiseBack().set(-0.5);
     }
-    else
-    {
-      Robot.climber.getRaiseFront().set(0);
-      Robot.climber.getRaiseBack().set(0);
+    else{
+      Robot.climber.getRaiseBack().set(OI.controller.getTriggerAxis(GenericHID.Hand.kRight));
     }
+    // if (OI.controller.getBButton())
+    // {
+    //   Robot.climber.getRaiseFront().set(0.5);
+    //   Robot.climber.getRaiseBack().set(0.5);
+    // }
+    // else if (OI.controller.getBumper(Hand.kRight) && !Robot.climber.getFrontSwitch()){
+    //   Robot.climber.getRaiseFront().set(-0.5);
+    // }
+    // else if (OI.controller.getBumper(Hand.kLeft) && !Robot.climber.getRearSwitch()){
+    //   Robot.climber.getRaiseBack().set(-0.5);
+    // }
+    // else
+    // {
+    //   Robot.climber.getRaiseFront().set(0);
+    //   Robot.climber.getRaiseBack().set(0);
+    // }
 
-    // Moves the low rider wheels
-    double WheelSpeed = OI.controller.getTriggerAxis(GenericHID.Hand.kRight);
-    Robot.climber.getLowerWheel().set(WheelSpeed);
+    // // Moves the low rider wheels
+    // double WheelSpeed = OI.controller.getTriggerAxis(GenericHID.Hand.kRight);
+    // Robot.climber.getLowerWheel().set(WheelSpeed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
