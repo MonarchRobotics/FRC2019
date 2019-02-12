@@ -10,7 +10,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.Climb;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.DigitalInput;
 
 /**
@@ -19,17 +19,14 @@ import edu.wpi.first.wpilibj.DigitalInput;
 public class LowRider extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public WPI_TalonSRX LowerWheel, RaiseFront, RaiseBack;
+  public Talon LowerWheel, RaiseFront, RaiseBack;
   private DigitalInput rearSwitch, frontSwitch;
   
   public LowRider(int LowerWheelRight,int RaiseFront, int RaiseBack, int rearSwitch, int frontSwitch) {
-    this.LowerWheel = new WPI_TalonSRX(LowerWheelRight);
+    this.LowerWheel = new Talon(LowerWheelRight);
 
-    this.RaiseFront = new WPI_TalonSRX(RaiseFront);
-    this.RaiseBack = new WPI_TalonSRX(RaiseBack);
-
-    this.RaiseFront.setNeutralMode(NeutralMode.Brake);
-    this.RaiseBack.setNeutralMode(NeutralMode.Brake);
+    this.RaiseFront = new Talon(RaiseFront);
+    this.RaiseBack = new Talon(RaiseBack);
 
     this.rearSwitch = new DigitalInput(rearSwitch);
     this.frontSwitch = new DigitalInput(frontSwitch);
@@ -38,21 +35,21 @@ public class LowRider extends Subsystem {
   /**
    * @return the lowerWheel
    */
-  public WPI_TalonSRX getLowerWheel() {
+  public Talon getLowerWheel() {
     return LowerWheel;
   }
 
   /**
    * @return the raiseBack
    */
-  public WPI_TalonSRX getRaiseBack() {
+  public Talon getRaiseBack() {
     return RaiseBack;
   }
 
   /**
    * @return the raiseFront
    */
-  public WPI_TalonSRX getRaiseFront() {
+  public Talon getRaiseFront() {
     return RaiseFront;
   }
 

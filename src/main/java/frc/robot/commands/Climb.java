@@ -60,7 +60,13 @@ public class Climb extends Command {
 
     // // Moves the low rider wheels
     // double WheelSpeed = OI.controller.getTriggerAxis(GenericHID.Hand.kRight);
-    // Robot.climber.getLowerWheel().set(WheelSpeed);
+    if(OI.controller.getYButton()){
+      Robot.climber.getLowerWheel().set(0.5);
+    }
+    else{
+      Robot.climber.getLowerWheel().set(0.0);
+    }
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()
