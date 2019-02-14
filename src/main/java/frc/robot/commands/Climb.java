@@ -84,7 +84,7 @@ public class Climb extends Command {
             backSpeed-=x/100;
           }
           else{
-            backSpeed+=0.1;
+            backSpeed+=x/100;
           }
         }
         else{
@@ -94,14 +94,14 @@ public class Climb extends Command {
       else if(x<0){
         if(backSpeed>=1){
           if(frontSpeed>=0){
-            frontSpeed-=x/100;
+            frontSpeed-=(-x)/100;
           }
           else{
-            frontSpeed+=0.1;
+            frontSpeed+=(-x)/100;
           }
         }
         else{
-          backSpeed+=x/100;
+          backSpeed+=(-x)/100;
         }
       }
       System.out.println("Front Speed: "+frontSpeed);
