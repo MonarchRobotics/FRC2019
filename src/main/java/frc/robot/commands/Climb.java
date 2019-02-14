@@ -36,14 +36,15 @@ public class Climb extends Command {
   protected void execute() {
     // B raises the whole thing
     
-    if(OI.controller.getBumper(GenericHID.Hand.kLeft)){
+    // Does + thingys mean pulling legs up or pushing legs down
+    if(OI.controller.getBumper(GenericHID.Hand.kLeft)  && Robot.climber.getRearSwitch()){
       Robot.climber.getRaiseBack().set(1.0);
     }
     else{
       Robot.climber.getRaiseBack().set(-OI.controller.getTriggerAxis(GenericHID.Hand.kLeft));
     }
 
-    if(OI.controller.getBumper(GenericHID.Hand.kRight)){
+    if(OI.controller.getBumper(GenericHID.Hand.kRight) && !Robot.climber.getFrontSwitch()){
       Robot.climber.getRaiseFront().set(1.0);
     }
     else{
@@ -75,7 +76,7 @@ public class Climb extends Command {
       Robot.climber.getLowerWheel().set(0.0);
     }
     
-
+// && !Robot.climber.getRearSwitch() && !Robot.climber.getFrontSwitch()
     if(OI.controller.getStartButton()){
       accel = new BuiltInAccelerometer(); 
       double x = accel.getY();
