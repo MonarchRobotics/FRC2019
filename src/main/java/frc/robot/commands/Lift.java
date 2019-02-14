@@ -20,8 +20,8 @@ public class Lift extends Command {
   boolean lifting;
   boolean secondDirection;//true is up, false is down.
   int liftingTo;//0 is lowered, 1 is 2nd level, 2 is 3rd level
-  final int second = 8;
-  final int third = 15;
+  final double second = 9.75;
+  final double third = 15.5;
   public Lift() {
     // requires(Robot.m_subsystem);
     lifting = false;
@@ -38,7 +38,7 @@ public class Lift extends Command {
   @Override
   protected void execute() {
     int pov = OI.controller.getPOV();
-    double speed = 0.25;
+    double speed = 1.0;
 
     if(!lifting){
       if(pov==270 && Robot.lift.getSpark().getEncoder().getPosition()>0){

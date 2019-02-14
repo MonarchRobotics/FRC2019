@@ -29,17 +29,25 @@ public class Climb extends Command {
   @Override
   protected void execute() {
     // B raises the whole thing
-    if(OI.controller.getBumper(GenericHID.Hand.kLeft)){
-      Robot.climber.getRaiseFront().set(-0.5);
+    
+    if(OI.controller.getStartButton()){
+      Robot.climber.getRaiseBack().set(-0.4);
+      Robot.climber.getRaiseFront().set(-1.0);
+    }
+    else if(OI.controller.getBumper(GenericHID.Hand.kLeft)){
+      Robot.climber.getRaiseBack().set(1.0);
     }
     else{
-      Robot.climber.getRaiseFront().set(OI.controller.getTriggerAxis(GenericHID.Hand.kLeft));
+      Robot.climber.getRaiseBack().set(-OI.controller.getTriggerAxis(GenericHID.Hand.kLeft));
     }
-    if(OI.controller.getBumper(GenericHID.Hand.kRight)){
-      Robot.climber.getRaiseBack().set(-0.5);
+
+    if(OI.controller.getStartButton()){
+    }
+    else if(OI.controller.getBumper(GenericHID.Hand.kRight)){
+      Robot.climber.getRaiseFront().set(1.0);
     }
     else{
-      Robot.climber.getRaiseBack().set(OI.controller.getTriggerAxis(GenericHID.Hand.kRight));
+      Robot.climber.getRaiseFront().set(-OI.controller.getTriggerAxis(GenericHID.Hand.kRight));
     }
     // if (OI.controller.getBButton())
     // {
@@ -61,7 +69,7 @@ public class Climb extends Command {
     // // Moves the low rider wheels
     // double WheelSpeed = OI.controller.getTriggerAxis(GenericHID.Hand.kRight);
     if(OI.controller.getYButton()){
-      Robot.climber.getLowerWheel().set(0.5);
+      Robot.climber.getLowerWheel().set(-1.0);
     }
     else{
       Robot.climber.getLowerWheel().set(0.0);

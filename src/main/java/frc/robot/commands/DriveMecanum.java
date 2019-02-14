@@ -35,7 +35,7 @@ public class DriveMecanum extends Command {
     y = OI.deadZone(OI.controller.getY(GenericHID.Hand.kLeft), RobotMap.getTranslationaldeadzone());
     twist = OI.deadZone(OI.controller.getX(GenericHID.Hand.kRight), RobotMap.getRotationaldeadzone());
 
-    Robot.drivetrain.getDrivetrain().driveCartesian(x, y, twist);
+    Robot.drivetrain.getDrivetrain().driveCartesian(x, -y, twist);
   }
 
   // Make this return true when this Command no longer needs to run execute()

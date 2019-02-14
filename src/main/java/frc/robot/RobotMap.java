@@ -20,8 +20,8 @@ public class RobotMap {
   // public static int rightMotor = 2;
   
   //DONT SET THESE TO 1
-  private static final double translationalDeadZone = 0.1;
-  private static final double rotationalDeadZone = 0.1;
+  private static final double translationalDeadZone = 0.05;
+  private static final double rotationalDeadZone = 0.05;
 
   private final static int frontLeft = 4;
   private final static int frontRight = 1;
@@ -30,9 +30,9 @@ public class RobotMap {
 
   private final static int spark = 0;
 
-  private static final int LowerWheel = 5;
-  private static final int RaiseFront = 6;
-  private static final int RaiseBack = 7;
+  private static final int LowerWheel = 2;
+  private static final int RaiseFront = 4;
+  private static final int RaiseBack = 3;
 
   private static final int openChannel = 1;
   private static final int releaseChannel = 2;
