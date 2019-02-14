@@ -36,20 +36,14 @@ public class Climb extends Command {
   protected void execute() {
     // B raises the whole thing
     
-    if(OI.controller.getStartButton()){
-      Robot.climber.getRaiseBack().set(-0.4);
-      Robot.climber.getRaiseFront().set(-1.0);
-    }
-    else if(OI.controller.getBumper(GenericHID.Hand.kLeft)){
+    if(OI.controller.getBumper(GenericHID.Hand.kLeft)){
       Robot.climber.getRaiseBack().set(1.0);
     }
     else{
       Robot.climber.getRaiseBack().set(-OI.controller.getTriggerAxis(GenericHID.Hand.kLeft));
     }
 
-    if(OI.controller.getStartButton()){
-    }
-    else if(OI.controller.getBumper(GenericHID.Hand.kRight)){
+    if(OI.controller.getBumper(GenericHID.Hand.kRight)){
       Robot.climber.getRaiseFront().set(1.0);
     }
     else{
@@ -84,38 +78,41 @@ public class Climb extends Command {
 
     if(OI.controller.getStartButton()){
       accel = new BuiltInAccelerometer(); 
-      double x = accel.getX();
-      System.out.println("Accelerometer X Value: "+x);
+      double x = accel.getY();
+      System.out.println("accel: "+x);
+      
       if(x>0){
         if(frontSpeed>=1){
           if(backSpeed>=0){
-            backSpeed-=x/100;
+            backSpeed-=Math.abs(x)/2.5;
           }
           else{
-            backSpeed+=x/100;
+            frontSpeed+=Math.abs(x)/2.5;
+            frontSpeed = 1.0;
           }
         }
         else{
-          frontSpeed+=x/100;
+          frontSpeed+=Math.abs(x)/2.5;
         }
       }
       else if(x<0){
         if(backSpeed>=1){
           if(frontSpeed>=0){
-            frontSpeed-=(-x)/100;
+            frontSpeed-=Math.abs(x)/2.5;
           }
           else{
-            frontSpeed+=(-x)/100;
+            backSpeed+=Math.abs(x)/2.5;
+            backSpeed = 1.0;
           }
         }
         else{
-          backSpeed+=(-x)/100;
+          backSpeed+=Math.abs(x)/2.5;
         }
       }
       System.out.println("Front Speed: "+frontSpeed);
       System.out.println("Back Speed: "+backSpeed);
-      Robot.climber.getRaiseFront().set(frontSpeed);
-      Robot.climber.getRaiseBack().set(backSpeed);
+      Robot.climber.getRaiseFront().set(-frontSpeed);
+      Robot.climber.getRaiseBack().set(-backSpeed);
     }
   }
 
