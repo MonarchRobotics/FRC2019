@@ -12,8 +12,6 @@ import frc.robot.commands.Lift;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import com.revrobotics.CANSparkMax.IdleMode;
-import com.revrobotics.CANError;
 
 
 /**

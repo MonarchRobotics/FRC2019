@@ -8,12 +8,16 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.Robot;
+import edu.wpi.first.wpilibj.interfaces.Accelerometer;
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 
 public class Climb extends Command {
+  double frontSpeed;
+  double backSpeed;
+  Accelerometer accel;
   public Climb() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -23,6 +27,8 @@ public class Climb extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    frontSpeed = 1.0;
+    backSpeed = 1.0;
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -75,6 +81,42 @@ public class Climb extends Command {
       Robot.climber.getLowerWheel().set(0.0);
     }
     
+
+    if(OI.controller.getStartButton()){
+      accel = new BuiltInAccelerometer(); 
+      double x = accel.getX();
+      System.out.println("Accelerometer X Value: "+x);
+      if(x>0){
+        if(frontSpeed>=1){
+          if(backSpeed>=0){
+            backSpeed-=x/100;
+          }
+          else{
+            backSpeed+=x/100;
+          }
+        }
+        else{
+          frontSpeed+=x/100;
+        }
+      }
+      else if(x<0){
+        if(backSpeed>=1){
+          if(frontSpeed>=0){
+            frontSpeed-=(-x)/100;
+          }
+          else{
+            frontSpeed+=(-x)/100;
+          }
+        }
+        else{
+          backSpeed+=(-x)/100;
+        }
+      }
+      System.out.println("Front Speed: "+frontSpeed);
+      System.out.println("Back Speed: "+backSpeed);
+      Robot.climber.getRaiseFront().set(frontSpeed);
+      Robot.climber.getRaiseBack().set(backSpeed);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
