@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.*;
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.Compressor;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -30,7 +31,7 @@ public class Robot extends TimedRobot {
   public static LiftSystem lift;
   public static Ducc duck = new Ducc(RobotMap.getOpenChannel(), RobotMap.getReleaseChannel());
   public static LowRider climber = new LowRider(RobotMap.getLowerWheel() ,RobotMap.getRaiseFront(), RobotMap.getRaiseBack(), RobotMap.getRearLimitSwitch(), RobotMap.getFrontLimitSwitch());
-
+  public static Compressor compressor = new Compressor(RobotMap.getCompressor());
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -47,6 +48,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto mode", m_chooser);
     CameraServer.getInstance().startAutomaticCapture(0);
     CameraServer.getInstance().startAutomaticCapture(1);
+    compressor.setClosedLoopControl(true);
   }
 
   /**

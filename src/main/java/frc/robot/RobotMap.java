@@ -36,6 +36,7 @@ public class RobotMap {
 
   private static final int openChannel = 1;
   private static final int releaseChannel = 2;
+  private static final int compressor = 0;
 
   private static final int rearLimitSwitch = 1;
   private static final int frontLimitSwitch = 2;
@@ -69,6 +70,9 @@ public class RobotMap {
 
   public static int getReleaseChannel() {
       return releaseChannel;
+  }
+  public static int getCompressor() {
+      return compressor;
   }
 
   public static double getRotationaldeadzone() {

@@ -37,7 +37,7 @@ public class Climb extends Command {
     // B raises the whole thing
     
     // Does + thingys mean pulling legs up or pushing legs down
-    if(OI.controller.getBumper(GenericHID.Hand.kLeft)  && Robot.climber.getRearSwitch()){
+    if(OI.controller.getBumper(GenericHID.Hand.kLeft)  && !Robot.climber.getRearSwitch()){
       Robot.climber.getRaiseBack().set(1.0);
     }
     else{
