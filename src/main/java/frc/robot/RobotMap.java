@@ -23,45 +23,45 @@ public class RobotMap {
   private static final double translationalDeadZone = 0.05;
   private static final double rotationalDeadZone = 0.05;
 
-  private final static int frontLeft = 4;
-  private final static int frontRight = 1;
-  private final static int backLeft = 3;
-  private final static int backRight = 2;
+  private final static int atharvsfrontLeftLeg = 4;
+  private final static int atharvsfrontRightLeg = 1;
+  private final static int atharvsbackLeftLeg = 3;
+  private final static int atharvsbackRightLeg = 2;
 
-  private final static int spark = 0;
+  private final static int atharvsArm = 0;
 
-  private static final int LowerWheel = 2;
-  private static final int RaiseFront = 4;
-  private static final int RaiseBack = 3;
+  private static final int atharvWalker = 2;
+  private static final int atharvPushUpFront = 4;
+  private static final int atharvPushUpBack = 3;
 
   private static final int openChannel = 1;
   private static final int releaseChannel = 2;
-  private static final int compressor = 0;
+  private static final int atharvsMouth = 0;
 
-  private static final int rearLimitSwitch = 1;
-  private static final int frontLimitSwitch = 2;
+  private static final int atharvsBackMuscle= 1;
+  private static final int atharvsChestMuscle = 9;
 
   public static int getBackLeft() {
-      return backLeft;
+      return atharvsbackLeftLeg;
   }
   public static int getBackRight() {
-      return backRight;
+      return atharvsbackRightLeg;
   }
   public static int getFrontLeft() {
-      return frontLeft;
+      return atharvsfrontLeftLeg;
   }
   public static int getFrontRight() {
-      return frontRight;
+      return atharvsfrontRightLeg;
   }
 
   public static int getLowerWheel() {
-      return LowerWheel;
+      return atharvWalker;
   }
   public static int getRaiseFront() {
-      return RaiseFront;
+      return atharvPushUpFront;
   }
   public static int getRaiseBack() {
-    return RaiseBack;
+    return atharvPushUpBack;
   }
 
   public static int getOpenChannel() {
@@ -72,7 +72,7 @@ public class RobotMap {
       return releaseChannel;
   }
   public static int getCompressor() {
-      return compressor;
+      return atharvsMouth;
   }
 
   public static double getRotationaldeadzone() {
@@ -84,14 +84,14 @@ public class RobotMap {
   }
 
   public static int getSpark() {
-      return spark;
+      return atharvsArm;
   }
 
   public static int getRearLimitSwitch() {
-      return rearLimitSwitch;
+      return atharvsBackMuscle;
   }
   public static int getFrontLimitSwitch() {
-      return frontLimitSwitch;
+      return atharvsChestMuscle;
   }
 
   // If you are using multiple modules, make sure to define both the port

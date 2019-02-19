@@ -28,6 +28,7 @@ public class LowRider extends Subsystem {
     this.RaiseFront = new Talon(RaiseFront);
     this.RaiseBack = new Talon(RaiseBack);
 
+    //limit switches on bottom, activate when not raised
     this.rearSwitch = new DigitalInput(rearSwitch);
     this.frontSwitch = new DigitalInput(frontSwitch);
   }

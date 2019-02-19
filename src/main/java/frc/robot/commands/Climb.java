@@ -28,27 +28,33 @@ public class Climb extends Command {
   @Override
   protected void initialize() {
     frontSpeed = 1.0;
-    backSpeed = 1.0;
+    backSpeed = 0.5;
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    // System.out.println("Current Back Switch State: "+Robot.climber.getRearSwitch());
+    // System.out.println("Current Front Switch State: "+Robot.climber.getFrontSwitch());
     // B raises the whole thing
     
     // Does + thingys mean pulling legs up or pushing legs down
-    if(OI.controller.getBumper(GenericHID.Hand.kLeft)  && !Robot.climber.getRearSwitch()){
+    if(OI.controller.getBumper(GenericHID.Hand.kLeft)  && Robot.climber.getRearSwitch()){
       Robot.climber.getRaiseBack().set(1.0);
+      // System.out.println("Raising");
     }
     else{
+      // System.out.println("Stopped");
       Robot.climber.getRaiseBack().set(-OI.controller.getTriggerAxis(GenericHID.Hand.kLeft));
     }
 
-    if(OI.controller.getBumper(GenericHID.Hand.kRight) && !Robot.climber.getFrontSwitch()){
+    if(OI.controller.getBumper(GenericHID.Hand.kRight)  && Robot.climber.getFrontSwitch()){
       Robot.climber.getRaiseFront().set(1.0);
+      // System.out.println("Bumper");
     }
     else{
       Robot.climber.getRaiseFront().set(-OI.controller.getTriggerAxis(GenericHID.Hand.kRight));
+      // System.out.println("Trigger");
     }
     // if (OI.controller.getBButton())
     // {
@@ -77,32 +83,41 @@ public class Climb extends Command {
     }
     
 // && !Robot.climber.getRearSwitch() && !Robot.climber.getFrontSwitch()
+    if(OI.controller.getXButton()){
+      System.out.println("Reset");
+      frontSpeed = 1.0;
+      backSpeed = 0.5;
+
+    }
     if(OI.controller.getStartButton()){
       accel = new BuiltInAccelerometer(); 
       double x = accel.getY();
       System.out.println("accel: "+x);
+      final double slash = 0.96;
       
       if(x>0){
         if(frontSpeed>=1){
           if(backSpeed>=0){
-            backSpeed-=Math.abs(x)/2.5;
+            backSpeed-=Math.abs(x)/slash;
+            if(backSpeed<0){backSpeed=0.3;}
           }
           else{
-            frontSpeed+=Math.abs(x)/2.5;
+            frontSpeed+=Math.abs(x)/slash;
             frontSpeed = 1.0;
           }
         }
         else{
-          frontSpeed+=Math.abs(x)/2.5;
+          frontSpeed+=Math.abs(x)/slash;
         }
       }
       else if(x<0){
         if(backSpeed>=1){
           if(frontSpeed>=0){
-            frontSpeed-=Math.abs(x)/2.5;
+            frontSpeed-=Math.abs(x)/slash;
+            if(frontSpeed<0){frontSpeed=0.3;}
           }
           else{
-            backSpeed+=Math.abs(x)/2.5;
+            backSpeed+=Math.abs(x)/slash;
             backSpeed = 1.0;
           }
         }

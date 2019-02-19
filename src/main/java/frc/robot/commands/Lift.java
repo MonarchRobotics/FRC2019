@@ -64,16 +64,20 @@ public class Lift extends Command {
     }
     else if(pov==180){
       stopMoving();
+      System.out.println("Emergency Stop");
     }
     else{
       if(liftingTo==0 && Robot.lift.getSpark().getEncoder().getPosition()<=0){
         stopMoving();
+        System.out.println("Reached 1st level");
       }
       else if(liftingTo==1 && ((secondDirection && Robot.lift.getSpark().getEncoder().getPosition()>=second*36) || (!secondDirection && Robot.lift.getSpark().getEncoder().getPosition()<=second*36))){
         stopMoving();
+        System.out.println("Reached 2nd level");
       }
       else if(liftingTo==2 && Robot.lift.getSpark().getEncoder().getPosition()>=third*36){
         stopMoving();
+        System.out.println("Reached 3rd level");
       }
     
     }
