@@ -10,6 +10,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.OI;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * An example command.  You can replace me with your own command.
@@ -19,7 +20,7 @@ public class Lift extends Command {
   boolean secondDirection;//true is up, false is down.
   int liftingTo;//0 is lowered, 1 is 2nd level, 2 is 3rd level
   final double second = 9.75;
-  final double third = 15.5;
+  final double third = 15.0;
   public Lift() {
     // requires(Robot.m_subsystem);
     lifting = false;
@@ -39,12 +40,12 @@ public class Lift extends Command {
     double speed = 1.0;//the speed we want the lift to go at.
 
     if(!lifting){
-      if(pov==270 && Robot.lift.getSpark().getEncoder().getPosition()>0){//Checks if the left button is pressed, and if the lift isn't already at it's lowest level.
+      if((pov==270 || OI.button9.get()) && Robot.lift.getSpark().getEncoder().getPosition()>0){//Checks if the left button is pressed, and if the lift isn't already at it's lowest level.
         Robot.lift.getSpark().set(-speed);
         lifting = true;
         liftingTo = 0;
       }
-      else if(pov==90){//right button, 2rd level.
+      else if((pov==90 || OI.button8.get())){//right button, 2rd level.
         if(liftingTo==2){//checks if we're at 3rd level, if so, then go down
           Robot.lift.getSpark().set(-speed);
           secondDirection = false;
@@ -56,13 +57,13 @@ public class Lift extends Command {
         lifting = true;
         liftingTo = 1;
       }
-      else if(pov==0 && Robot.lift.getSpark().getEncoder().getPosition()<third*36){//Top button on D-pad, and makes sure the lift isn't already at third level.
+      else if((pov==0 || OI.button7.get()) && Robot.lift.getSpark().getEncoder().getPosition()<third*36){//Top button on D-pad, and makes sure the lift isn't already at third level.
         Robot.lift.getSpark().set(speed);     
         lifting = true;
         liftingTo = 2;
       }
     }
-    else if(pov==180){//bottom of d-pad, stops the lift.
+    else if(pov==180 || OI.button10.get()){//bottom of d-pad, stops the lift.
       stopMoving();
       System.out.println("Emergency Stop");
     }
@@ -79,8 +80,14 @@ public class Lift extends Command {
         stopMoving();
         System.out.println("Reached 3rd level");
       }
-    
+      
     }
+    // if(OI.controller.getBButton()){
+    //   Robot.lift.getSpark().set(-0.5);
+    // }
+    // else{
+    //   Robot.lift.getSpark().set(0.0);
+    // }
   }
 
   void stopMoving(){

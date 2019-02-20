@@ -28,7 +28,7 @@ public class Climb extends Command {
   @Override
   protected void initialize() {
     frontSpeed = 1.0;
-    backSpeed = 0.5;
+    backSpeed = 1.0;
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -86,14 +86,14 @@ public class Climb extends Command {
     if(OI.controller.getXButton()){
       System.out.println("Reset");
       frontSpeed = 1.0;
-      backSpeed = 0.5;
+      backSpeed = 1.0;
 
     }
     if(OI.controller.getStartButton()){
       accel = new BuiltInAccelerometer(); 
       double x = accel.getY();
       System.out.println("accel: "+x);
-      final double slash = 0.96;
+      final double slash = 2.2;
       
       if(x>0){
         if(frontSpeed>=1){
