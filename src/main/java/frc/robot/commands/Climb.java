@@ -39,7 +39,7 @@ public class Climb extends Command {
     // B raises the whole thing
     
     // Does + thingys mean pulling legs up or pushing legs down
-    if(OI.controller.getBumper(GenericHID.Hand.kLeft)  && Robot.climber.getRearSwitch()){
+    if(OI.controller.getBumper(GenericHID.Hand.kLeft)  && (Robot.climber.getRearSwitch() || OI.button12.get())){
       Robot.climber.getRaiseBack().set(1.0);
       // System.out.println("Raising");
     }
@@ -47,8 +47,8 @@ public class Climb extends Command {
       // System.out.println("Stopped");
       Robot.climber.getRaiseBack().set(-OI.controller.getTriggerAxis(GenericHID.Hand.kLeft));
     }
-
-    if(OI.controller.getBumper(GenericHID.Hand.kRight)  && Robot.climber.getFrontSwitch()){
+    System.out.println(Robot.climber.getFrontSwitch());
+    if(OI.controller.getBumper(GenericHID.Hand.kRight)  && (Robot.climber.getFrontSwitch() || OI.button11.get())){
       Robot.climber.getRaiseFront().set(1.0);
       // System.out.println("Bumper");
     }
@@ -89,47 +89,47 @@ public class Climb extends Command {
       backSpeed = 1.0;
 
     }
-    if(OI.controller.getStartButton()){
-      accel = new BuiltInAccelerometer(); 
-      double x = accel.getY();
-      System.out.println("accel: "+x);
-      final double slash = 2.2;
+    // if(OI.controller.getStartButton()){
+    //   accel = new BuiltInAccelerometer(); 
+    //   double x = accel.getY();
+    //   System.out.println("accel: "+x);
+    //   final double slash = 2.2;
       
-      if(x>0){
-        if(frontSpeed>=1){
-          if(backSpeed>=0){
-            backSpeed-=Math.abs(x)/slash;
-            if(backSpeed<0){backSpeed=0.3;}
-          }
-          else{
-            frontSpeed+=Math.abs(x)/slash;
-            frontSpeed = 1.0;
-          }
-        }
-        else{
-          frontSpeed+=Math.abs(x)/slash;
-        }
-      }
-      else if(x<0){
-        if(backSpeed>=1){
-          if(frontSpeed>=0){
-            frontSpeed-=Math.abs(x)/slash;
-            if(frontSpeed<0){frontSpeed=0.3;}
-          }
-          else{
-            backSpeed+=Math.abs(x)/slash;
-            backSpeed = 1.0;
-          }
-        }
-        else{
-          backSpeed+=Math.abs(x)/2.5;
-        }
-      }
-      System.out.println("Front Speed: "+frontSpeed);
-      System.out.println("Back Speed: "+backSpeed);
-      Robot.climber.getRaiseFront().set(-frontSpeed);
-      Robot.climber.getRaiseBack().set(-backSpeed);
-    }
+    //   if(x>0){
+    //     if(frontSpeed>=1){
+    //       if(backSpeed>=0){
+    //         backSpeed-=Math.abs(x)/slash;
+    //         if(backSpeed<0){backSpeed=0.3;}
+    //       }
+    //       else{
+    //         frontSpeed+=Math.abs(x)/slash;
+    //         frontSpeed = 1.0;
+    //       }
+    //     }
+    //     else{
+    //       frontSpeed+=Math.abs(x)/slash;
+    //     }
+    //   }
+    //   else if(x<0){
+    //     if(backSpeed>=1){
+    //       if(frontSpeed>=0){
+    //         frontSpeed-=Math.abs(x)/slash;
+    //         if(frontSpeed<0){frontSpeed=0.3;}
+    //       }
+    //       else{
+    //         backSpeed+=Math.abs(x)/slash;
+    //         backSpeed = 1.0;
+    //       }
+    //     }
+    //     else{
+    //       backSpeed+=Math.abs(x)/2.5;
+    //     }
+    //   }
+    //   System.out.println("Front Speed: "+frontSpeed);
+    //   System.out.println("Back Speed: "+backSpeed);
+    //   Robot.climber.getRaiseFront().set(-frontSpeed);
+    //   Robot.climber.getRaiseBack().set(-backSpeed);
+    // }
   }
 
   // Make this return true when this Command no longer needs to run execute()

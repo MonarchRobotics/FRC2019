@@ -10,7 +10,12 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.OI;
+
+import java.util.concurrent.TimeUnit;
+
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.Timer;
 
 /**
  * An example command.  You can replace me with your own command.
@@ -18,11 +23,12 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class Lift extends Command {
   boolean lifting;
   boolean secondDirection;//true is up, false is down.
-  int liftingTo;//0 is lowered, 1 is 2nd level, 2 is 3rd level
+  boolean climbDirection;
+  double liftingTo;//0 is lowered, 1 is 2nd level, 2 is 3rd level
   final double second = 9.75;
   final double third = 15.0;
+  final double climb = second/2;
   public Lift() {
-    // requires(Robot.m_subsystem);
     lifting = false;
     liftingTo=0;
     requires(Robot.lift);
@@ -40,12 +46,12 @@ public class Lift extends Command {
     double speed = 1.0;//the speed we want the lift to go at.
 
     if(!lifting){
-      if((pov==270 || OI.button9.get()) && Robot.lift.getSpark().getEncoder().getPosition()>0){//Checks if the left button is pressed, and if the lift isn't already at it's lowest level.
+      if((pov==270 || OI.button3.get()) && Robot.lift.getSpark().getEncoder().getPosition()>0){//Checks if the left button is pressed, and if the lift isn't already at it's lowest level.
         Robot.lift.getSpark().set(-speed);
         lifting = true;
         liftingTo = 0;
       }
-      else if((pov==90 || OI.button8.get())){//right button, 2rd level.
+      else if((pov==90 || OI.button6.get())){//right button, 2rd level.
         if(liftingTo==2){//checks if we're at 3rd level, if so, then go down
           Robot.lift.getSpark().set(-speed);
           secondDirection = false;
@@ -57,13 +63,25 @@ public class Lift extends Command {
         lifting = true;
         liftingTo = 1;
       }
-      else if((pov==0 || OI.button7.get()) && Robot.lift.getSpark().getEncoder().getPosition()<third*36){//Top button on D-pad, and makes sure the lift isn't already at third level.
-        Robot.lift.getSpark().set(speed);     
+      else if((pov==0 || OI.button5.get()) && Robot.lift.getSpark().getEncoder().getPosition()<third*36){//Top button on D-pad, and makes sure the lift isn't already at third level.
+        Robot.lift.getSpark().set(speed);  
         lifting = true;
         liftingTo = 2;
       }
+      else if(OI.button2.get()){
+        if(liftingTo>0.5){
+          Robot.lift.getSpark().set(-speed);
+          climbDirection = true;
+        }
+        else{
+          Robot.lift.getSpark().set(speed);
+          climbDirection = false;
+        }
+        lifting = true;
+        liftingTo = 0.5;
+      }
     }
-    else if(pov==180 || OI.button10.get()){//bottom of d-pad, stops the lift.
+    else if(pov==180 || OI.button4.get()){//bottom of d-pad, stops the lift.
       stopMoving();
       System.out.println("Emergency Stop");
     }
@@ -80,10 +98,15 @@ public class Lift extends Command {
         stopMoving();
         System.out.println("Reached 3rd level");
       }
+      else if(liftingTo==0.5 && ((Robot.lift.getSpark().getEncoder().getPosition()>=climb*36 && !climbDirection) || (climbDirection && Robot.lift.getSpark().getEncoder().getPosition()<=climb*36))){
+        stopMoving();
+        System.out.println("Reached Climbing Level");
+        System.out.println("Ready to climb to level 3");
+      }
       
     }
     // if(OI.controller.getBButton()){
-    //   Robot.lift.getSpark().set(-0.5);
+    //   Robot.lift.getSpark().set(-0.25);
     // }
     // else{
     //   Robot.lift.getSpark().set(0.0);
@@ -93,6 +116,12 @@ public class Lift extends Command {
   void stopMoving(){
     Robot.lift.getSpark().set(0);
     lifting = false;
+    OI.controller.setRumble(RumbleType.kLeftRumble, 0.3);
+    OI.controller.setRumble(RumbleType.kRightRumble, 0.3);
+    Timer.delay(0.25);
+    OI.controller.setRumble(RumbleType.kLeftRumble, 0.0);
+    OI.controller.setRumble(RumbleType.kRightRumble, 0.0);
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -47,15 +47,22 @@ public class OI {
 
   public static XboxController controller;
   public static Joystick joystick;
-  public static JoystickButton button7,button8,button9,button10;
-
+  public static JoystickButton button2,button3,button4,button5,button6,button7,button8,button9,button10;
+  public static JoystickButton button11,button12;
   public OI(){
     controller = new XboxController(0);
     joystick = new Joystick(1);
+    button3 = new JoystickButton(joystick,3);
+    button2 = new JoystickButton(joystick,2);
+    button4 = new JoystickButton(joystick,4);
+    button5 = new JoystickButton(joystick,5);
+    button6 = new JoystickButton(joystick,6);
     button7 = new JoystickButton(joystick,7);
     button8 = new JoystickButton(joystick,8);
     button9 = new JoystickButton(joystick,9);
     button10 = new JoystickButton(joystick,10);
+    button11 = new JoystickButton(joystick,11);
+    button12 = new JoystickButton(joystick,12);
   }
 
   public static double deadZone (double val, double deadZone){

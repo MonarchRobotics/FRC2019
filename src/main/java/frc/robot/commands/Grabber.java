@@ -13,10 +13,12 @@ import frc.robot.OI;
 import frc.robot.Robot;
 
 public class Grabber extends Command {
+  boolean isPressured;
   public Grabber() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.duck);
+    isPressured = true;
   }
 
   // Called just before this Command runs the first time
@@ -27,6 +29,14 @@ public class Grabber extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    // if(!Robot.compressor.enabled()){
+    //   isPressured = true;
+    //   Robot.compressor.setClosedLoopControl(false);
+    // }
+    // else{
+    //   Robot.compressor.setClosedLoopControl(true);
+    // }
+    // Robot.compressor.setClosedLoopControl(true);
     if (OI.controller.getAButtonPressed()) {
       if (Robot.duck.getValue()!=Value.kForward) {
         Robot.duck.openDucc();
