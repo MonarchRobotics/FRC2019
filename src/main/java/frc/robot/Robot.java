@@ -16,12 +16,6 @@ import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.*;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
-import frc.robot.OI;
-
-import java.util.concurrent.TimeUnit;
-import edu.wpi.first.wpilibj.GenericHID.RumbleType;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.Timer;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -40,7 +34,6 @@ public class Robot extends TimedRobot {
   public static Compressor compressor = new Compressor(RobotMap.getCompressor());
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
-  public static boolean childMode;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -56,20 +49,6 @@ public class Robot extends TimedRobot {
     CameraServer.getInstance().startAutomaticCapture(0);
     CameraServer.getInstance().startAutomaticCapture(1);
     compressor.setClosedLoopControl(true);
-    childMode = true;
-  }
-
-  public static void switchChildMode(){
-    childMode = !childMode;
-    OI.controller.setRumble(RumbleType.kLeftRumble, 1.0);
-    OI.controller.setRumble(RumbleType.kRightRumble, 1.0);
-    Timer.delay(0.5);
-    OI.controller.setRumble(RumbleType.kLeftRumble, 0.0);
-    OI.controller.setRumble(RumbleType.kRightRumble, 0.0);
-  }
-
-  public static boolean getChildMode(){
-    return childMode;
   }
 
   /**

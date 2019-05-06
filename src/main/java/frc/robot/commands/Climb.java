@@ -39,20 +39,20 @@ public class Climb extends Command {
     // B raises the whole thing
     
     // Does + thingys mean pulling legs up or pushing legs down
-    if(OI.controller.getBumper(GenericHID.Hand.kLeft)  && (Robot.climber.getRearSwitch() || OI.button12.get()) && !Robot.getChildMode()){
+    if(OI.controller.getBumper(GenericHID.Hand.kLeft)  && (Robot.climber.getRearSwitch() || OI.button12.get())){
       Robot.climber.getRaiseBack().set(1.0);
       // System.out.println("Raising");
     }
-    else if(!Robot.getChildMode()){
+    else{
       // System.out.println("Stopped");
       Robot.climber.getRaiseBack().set(-OI.controller.getTriggerAxis(GenericHID.Hand.kLeft));
     }
-    // System.out.println(Robot.climber.getFrontSwitch());
-    if(OI.controller.getBumper(GenericHID.Hand.kRight)  && (Robot.climber.getFrontSwitch() || OI.button11.get()) && !Robot.getChildMode()){
+    System.out.println(Robot.climber.getFrontSwitch());
+    if(OI.controller.getBumper(GenericHID.Hand.kRight)  && (Robot.climber.getFrontSwitch() || OI.button11.get())){
       Robot.climber.getRaiseFront().set(1.0);
       // System.out.println("Bumper");
     }
-    else if(!Robot.getChildMode()){
+    else{
       Robot.climber.getRaiseFront().set(-OI.controller.getTriggerAxis(GenericHID.Hand.kRight));
       // System.out.println("Trigger");
     }

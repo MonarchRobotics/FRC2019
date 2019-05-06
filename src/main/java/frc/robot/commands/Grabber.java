@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.Robot;
-import edu.wpi.first.wpilibj.Timer;
 
 public class Grabber extends Command {
   boolean isPressured;
@@ -39,9 +38,6 @@ public class Grabber extends Command {
     // }
     // Robot.compressor.setClosedLoopControl(true);
     if (OI.controller.getAButtonPressed()) {
-      if(Robot.getChildMode()){
-        Timer.delay(0.25);
-      }
       if (Robot.duck.getValue()!=Value.kForward) {
         Robot.duck.openDucc();
       }
