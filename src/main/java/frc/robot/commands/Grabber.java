@@ -39,14 +39,14 @@ public class Grabber extends Command {
     // }
     // Robot.compressor.setClosedLoopControl(true);
     if (OI.controller.getAButtonPressed()) {
-      if(Robot.getChildMode()){
-        Timer.delay(0.25);
-      }
       if (Robot.duck.getValue()!=Value.kForward) {
         Robot.duck.openDucc();
       }
       else {
         Robot.duck.closeDucc();
+      }
+      if(Robot.getChildMode()){
+        Timer.delay(0.5);
       }
     }
   }

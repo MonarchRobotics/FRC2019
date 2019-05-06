@@ -40,7 +40,7 @@ public class Robot extends TimedRobot {
   public static Compressor compressor = new Compressor(RobotMap.getCompressor());
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
-  public static boolean childMode;
+  public static boolean childMode =false;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -56,7 +56,7 @@ public class Robot extends TimedRobot {
     CameraServer.getInstance().startAutomaticCapture(0);
     CameraServer.getInstance().startAutomaticCapture(1);
     compressor.setClosedLoopControl(true);
-    childMode = true;
+    // childMode = true;
   }
 
   public static void switchChildMode(){
