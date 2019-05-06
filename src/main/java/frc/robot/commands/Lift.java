@@ -28,10 +28,12 @@ public class Lift extends Command {
   final double second = 9.75;
   final double third = 15.0;
   final double climb = second/2;
+  boolean releasedChild;
   public Lift() {
     lifting = false;
     liftingTo=0;
     requires(Robot.lift);
+    releasedChild = true;
   }
 
   // Called just before this Command runs the first time
@@ -42,6 +44,15 @@ public class Lift extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    //childMode
+    if(OI.button9.get() && releasedChild){
+      Robot.switchChildMode();
+      releasedChild = false;
+    }
+    else if(!OI.button9.get()){
+      releasedChild = true;
+    }
+
     int pov = OI.controller.getPOV();//gets the d-pad
     double speed = 1.0;//the speed we want the lift to go at.
 
@@ -63,7 +74,7 @@ public class Lift extends Command {
         lifting = true;
         liftingTo = 1;
       }
-      else if((pov==0 || OI.button5.get()) && Robot.lift.getSpark().getEncoder().getPosition()<third*36){//Top button on D-pad, and makes sure the lift isn't already at third level.
+      else if((pov==0 || OI.button5.get()) && Robot.lift.getSpark().getEncoder().getPosition()<third*36 && !Robot.getChildMode()){//Top button on D-pad, and makes sure the lift isn't already at third level.
         Robot.lift.getSpark().set(speed);  
         lifting = true;
         liftingTo = 2;
