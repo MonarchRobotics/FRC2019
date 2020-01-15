@@ -55,7 +55,8 @@ public class Lift extends Command {
 
     int pov = OI.controller.getPOV();//gets the d-pad
     double speed = 1.0;//the speed we want the lift to go at.
-
+    System.out.println(Robot.lift.getSpark().getEncoder().getPosition());
+    System.out.println(Robot.lift.getSpark().get());
     if(!lifting){
       if((pov==270 || OI.button3.get()) && Robot.lift.getSpark().getEncoder().getPosition()>0){//Checks if the left button is pressed, and if the lift isn't already at it's lowest level.
         Robot.lift.getSpark().set(-speed);
